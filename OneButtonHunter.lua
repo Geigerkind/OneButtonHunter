@@ -30,7 +30,8 @@ if GetLocale() == "deDE" then
 		[2] = "Schnelle Schüsse",
 		[3] = "Gezielter Schuss",
 		[4] = "Mehrfachschuss",
-		[5] = "Automatischer Schuss"
+		[5] = "Automatischer Schuss",
+		[6] = "Anlegen: Erhöht das Distanzangriffstempo um (%d+)%%%."
 	}
 else
 	OBH.name = {
@@ -38,7 +39,8 @@ else
 		[2] = "Quick Shots",
 		[3] = "Aimed Shot",
 		[4] = "Multi-Shot",
-		[5] = "Auto Shot"
+		[5] = "Auto Shot",
+		[6] = "Equip: Increases ranged attack speed by (%d+)%%%."
 	}
 end
 OBH.Quiver = nil
@@ -48,7 +50,7 @@ function OBH:GetQuiverSpeed()
 	OBH_T:SetInventoryItem("player", 23)
 	local msg = OBH_TTextLeft4:GetText()
 	if msg then
-		for a in string.gfind(msg, "Equip: Increases ranged attack speed by (%d+)%%%.") do
+		for a in string.gfind(msg, self.name[6]) do
 			self.Quiver = 1 + tonumber(a)/100;
 		end
 	end

@@ -100,7 +100,7 @@ function OBH:Run()
 		if not self.Quiver then self:GetQuiverSpeed() end
 		self.as = 3/((self.Quiver or 1)*(self.rf or 1)*(self.qs or 1))
 		local time = GT();
-		if (self.next-time)<self.as and GetActionCooldown(self.asSlot)==0 then
+		if (self.next-time)>self.as and GetActionCooldown(self.asSlot)==0 then
 			CastSpellByName(self.name[3])
 			return
 		end
